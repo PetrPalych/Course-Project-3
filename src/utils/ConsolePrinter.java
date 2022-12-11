@@ -15,7 +15,8 @@ public class ConsolePrinter {
                 Username: %s
                 Password: %s
                 Account type: %s
-                Doctor ID: %s%n""",
+                Doctor ID: %s%n
+                """,
                 employee.getUsername(), employee.getPassword(), employee.getAccountType(), employee.getDoctorID());
     }
 
@@ -43,7 +44,8 @@ public class ConsolePrinter {
                 City: %s
                 Address: %s
                 Phone number: %s
-                Personal Number: %s%n""",
+                Personal Number: %s%n
+                """,
                 patient.getPatientID(), patient.getFullName(), patient.getSex(), patient.getDateOfBirth(), patient.getRegion(), patient.getCity(), patient.getAddress(), patient.getPhoneNumber(), patient.getPersonalNumber());
     }
 
@@ -123,11 +125,11 @@ public class ConsolePrinter {
     // Выводит информацию о платеже
     public static void printPayment(Payment payment) {
         System.out.printf("""
-                ID платежа: %s
-                ID карты пациента: %s
-                ФИО пациента: %s
-                Сумма оплаты: %s
-                Дата оплаты: %s%n
+                Payment ID: %s
+                Patient ID: %s
+                Patient full name: %s
+                Total: %s
+                Date: %s%n
                 """,
                 payment.getPaymentID(), payment.getCardFileId(), payment.getPatientFullName(), payment.getTotal(), payment.getDate());
     }

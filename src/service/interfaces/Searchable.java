@@ -107,7 +107,7 @@ public interface Searchable {
                 System.out.println("Введите ID амбулаторной карты: ");
                 String id = account.getScanner().nextLine();
                 relevantPatients = account.findInList(
-                        FileHelper.getFileData(Patient.class, FilePath.patients), id, "getId");
+                        FileHelper.getFileData(Patient.class, FilePath.patients), id, "getPatientID");
             }
 
             case "2" -> {

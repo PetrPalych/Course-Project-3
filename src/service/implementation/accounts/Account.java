@@ -26,7 +26,7 @@ public abstract class Account {
     }
 
     // Абстрактный метод, который выводит меню аккаунта в консоль.
-    public abstract void showMenu() throws Exception;
+    public abstract void showMenu();
 
     // Метод для проверки булевых значений после выполнения метода.
     public void checkConditions(boolean isFound, boolean incorrectInput) {
@@ -44,14 +44,7 @@ public abstract class Account {
         while (true) {
             System.out.println("Чтобы вернуться в меню, нажмите Enter");
             if (scanner.nextLine().equals("")) {
-                try {
-                    showMenu();
-                }
-
-                catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-
+                showMenu();
                 break;
             }
         }
