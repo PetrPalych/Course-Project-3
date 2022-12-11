@@ -1,0 +1,11 @@
+Username,Password,Account type,Doctor ID
+scriabina.L,scriabina123,Registrar,0
+martynov.M,martynov123,Cashier,0
+lobanov.S,lobanov123,Doctor,1
+romanenko.G,romanenko123,Doctor,2
+chernous.V,chernous123,Doctor,3
+levin.B,levin123,Doctor,4
+richards.P,richards123,Doctor,5
+bykov.A,bykov123,Doctor,6
+kupitman.I,kupitman123,Doctor,7
+kisegach.A,kisegach123,Chief doctor,0
