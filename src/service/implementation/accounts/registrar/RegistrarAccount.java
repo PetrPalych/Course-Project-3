@@ -3,11 +3,8 @@ package service.implementation.accounts.registrar;
 import models.implementation.appointments.Appointment;
 import models.implementation.doctors.Doctor;
 import models.implementation.patients.Patient;
-import models.implementation.recipes.Recipe;
-import models.implementation.treatments.Treatment;
-import models.interfaces.Convertible;
 import service.implementation.accounts.Account;
-import service.interfaces.Displayable;
+import service.interfaces.Printable;
 import service.interfaces.Searchable;
 import utils.*;
 
@@ -16,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-public class RegistrarAccount extends Account implements Displayable, Searchable {
+public class RegistrarAccount extends Account implements Printable, Searchable {
     // Главное меню регистратора
     @Override
     public void showMenu() {
@@ -44,8 +41,8 @@ public class RegistrarAccount extends Account implements Displayable, Searchable
                 15) Выход""");
 
         switch (scanner.nextLine()) {
-            case "1" -> showCardFile();
-            case "2" -> findPatientFile();
+            case "1" -> showCardFile(this);
+            case "2" -> findPatientFile(this);
             case "3" -> changePatientFile();
             case "4" -> addPatientFile();
             case "5" -> deleteCardFile();
@@ -53,14 +50,14 @@ public class RegistrarAccount extends Account implements Displayable, Searchable
             case "6" -> showListOfDoctors(this);
             case "7" -> findDoctor(this);
 
-            case "8" -> showListOfAppointments();
-            case "9" -> findAppointment();
+            case "8" -> showListOfAppointments(this);
+            case "9" -> findAppointment(this);
             case "10" -> changeAppointment();
             case "11" -> addAppointment();
             case "12" -> deleteAppointment();
 
-            case "13" -> findPrescribedTreatment();
-            case "14" -> findRecipe();
+            case "13" -> findPrescribedTreatment(this);
+            case "14" -> findRecipe(this);
 
             case "15" -> super.exit();
 
@@ -69,60 +66,6 @@ public class RegistrarAccount extends Account implements Displayable, Searchable
     }
 
 
-
-    // Метод №1 #Вывод
-    private void showCardFile() {
-        System.out.println(super.makeTableOf(
-                FileHelper.getFileData(Patient.class, FilePath.patients), FilePath.patients));
-
-        super.backToMenu();
-    }
-
-    // Метод №2 #Поиск
-    private void findPatientFile() {
-        boolean isFound = false;
-        boolean incorrectInput = false;
-
-        System.out.println("""
-                Выберите по какому критерию искать:
-                1) ID
-                2) ФИО
-                3) Персональный номер""");
-
-        List<? extends Convertible> relevantPatients = null;
-        switch (scanner.nextLine()) {
-            case "1" -> {
-                System.out.println("Введите ID амбулаторной карты: ");
-                String id = scanner.nextLine();
-                relevantPatients = super.findInList(
-                        FileHelper.getFileData(Patient.class, FilePath.patients), id, "getId");
-            }
-
-            case "2" -> {
-                System.out.println("Введите ФИО пациента: ");
-                String fullName = scanner.nextLine();
-                relevantPatients = FileHelper.getFileData(Patient.class, FilePath.patients).stream().filter(
-                        patient -> patient.getFullName().contains(fullName)).toList();
-            }
-
-            case "3" -> {
-                System.out.println("Введите персональный номер пациента: ");
-                String personalNumber = scanner.nextLine();
-                relevantPatients = super.findInList(
-                        FileHelper.getFileData(Patient.class, FilePath.patients),
-                        personalNumber,
-                        "getPersonalNumber");
-            }
-        }
-
-        if (relevantPatients != null && !relevantPatients.isEmpty()) {
-            isFound = true;
-            System.out.println(super.makeTableOf(relevantPatients, FilePath.patients));
-        }
-
-        super.checkConditions(isFound, incorrectInput);
-        super.backToMenu();
-    }
 
     // Метод №3 #Изменение
     private void changePatientFile() {
@@ -343,120 +286,6 @@ public class RegistrarAccount extends Account implements Displayable, Searchable
 
 
 
-    // Метод №8 #Вывод
-    private void showListOfAppointments() {
-        System.out.println(super.makeTableOf(
-                FileHelper.getFileData(Appointment.class, FilePath.appointments), FilePath.appointments));
-
-        super.backToMenu();
-    }
-
-    // Метод №9 #Вывод
-    private void findAppointment() {
-        boolean isFound = false;
-
-        System.out.println("""
-                Выберите ко какому критерию искать прием(-ы):
-                1) ID приема
-                2) ID врача
-                3) ФИО врача
-                4) Время приема
-                5) Дата приема
-                6) Время и дата приема
-                7) ФИО пациента
-                8) Статус оплаты""");
-
-        List<? extends Convertible> relevantContracts = null;
-        switch (scanner.nextLine()) {
-            case "1" -> {
-                System.out.println("Введите ID приема: ");
-                String contractId = scanner.nextLine();
-                relevantContracts = super.findInList(
-                        FileHelper.getFileData(Appointment.class, FilePath.appointments),
-                        contractId,
-                        "getContractId");
-            }
-
-            case "2" -> {
-                System.out.println("Введите ID врача: ");
-                String doctorId = scanner.nextLine();
-                relevantContracts = super.findInList(
-                        FileHelper.getFileData(Appointment.class, FilePath.appointments),
-                        doctorId,
-                        "getDoctorId");
-            }
-
-            case "3" -> {
-                System.out.println("Введите ФИО врача: ");
-                String doctorFullName = scanner.nextLine();
-                relevantContracts = FileHelper.getFileData(Appointment.class, FilePath.appointments).stream().filter(
-                        contract -> contract.getDoctorFullName().contains(doctorFullName)).toList();
-            }
-
-            case "4" -> {
-                System.out.println("Введите время приема: (24:60)");
-                String receptionTime = scanner.nextLine();
-                relevantContracts = FileHelper.getFileData(Appointment.class, FilePath.appointments).stream().filter(
-                        contract -> contract.getReceptionTime().contains(receptionTime)).toList();
-            }
-
-            case "5" -> {
-                System.out.println("Введите дату приема: (dd.MM.yyyy)");
-                String receptionDate = scanner.nextLine();
-                relevantContracts = super.findInList(
-                        FileHelper.getFileData(Appointment.class, FilePath.appointments),
-                        receptionDate,
-                        "getReceptionDate");
-            }
-
-            case "6" -> {
-                System.out.println("Введите время приема: (24:60)");
-                String receptionTime = scanner.nextLine();
-
-                System.out.println("Введите дату приема: (dd.MM.yyyy)");
-                String receptionDate = scanner.nextLine();
-
-                relevantContracts = FileHelper.getFileData(Appointment.class, FilePath.appointments).stream().filter(
-                        contract -> contract.getReceptionTime().contains(receptionTime) &&
-                                contract.getReceptionDate().equals(receptionDate)).toList();
-            }
-
-            case "7" -> {
-                System.out.println("Введите ФИО пациента:");
-                String patientFullName = scanner.nextLine();
-                relevantContracts = FileHelper.getFileData(Appointment.class, FilePath.appointments).stream().filter(
-                        contract -> contract.getPatientFullName().contains(patientFullName)).toList();
-            }
-
-            case "8" -> {
-                System.out.println("""
-                        Выберите тип статуса оплаты:
-                        1) Оплачено
-                        2) Не оплачено""");
-
-                switch (scanner.nextLine()) {
-                    case "1" -> relevantContracts = super.findInList(
-                            FileHelper.getFileData(Appointment.class, FilePath.appointments),
-                            "Paid",
-                            "getStatus");
-
-                    case "2" -> relevantContracts = super.findInList(
-                            FileHelper.getFileData(Appointment.class, FilePath.appointments),
-                            "Not Paid",
-                            "getStatus");
-                }
-            }
-        }
-
-        if (relevantContracts != null && !relevantContracts.isEmpty()) {
-            isFound = true;
-            System.out.println(super.makeTableOf(relevantContracts, FilePath.appointments));
-        }
-
-        super.checkConditions(isFound, false);
-        super.backToMenu();
-    }
-
     // Метод №10 #Изменение
     private void changeAppointment() {
         boolean isFound = false;
@@ -672,157 +501,5 @@ public class RegistrarAccount extends Account implements Displayable, Searchable
 
         super.checkConditions(isFound, incorrectInput);
         super.backToMenu();
-    }
-
-
-
-    // Метод №13
-    private void findPrescribedTreatment() {
-        boolean isFound = false;
-        boolean incorrectInput = false;
-
-        System.out.println("""
-                Выберите по какому критерию искать назначенное лечение:
-                1) ID лечения
-                2) Дата назначения
-                3) ID врача
-                4) ФИО врача
-                5) ID амбулаторной карты пациента
-                6) ФИО пациента""");
-
-        List<Treatment> relevantTreatments = null;
-        switch (scanner.nextLine()) {
-            case "1" -> {
-                System.out.println("Введите ID лечения: ");
-                String treatmentID = scanner.nextLine();
-                relevantTreatments = FileHelper.getFileData(Treatment.class, FilePath.treatments).stream().filter(
-                        treatment -> treatment.getTreatmentID().equals(treatmentID)).toList();
-            }
-
-            case "2" -> {
-                System.out.println("Введите дату назначения лечения: ");
-                String date = scanner.nextLine();
-                relevantTreatments = FileHelper.getFileData(Treatment.class, FilePath.treatments).stream().filter(
-                        treatment -> treatment.getDate().equals(date)).toList();
-            }
-
-            case "3" -> {
-                System.out.println("Введите ID врача: ");
-                String doctorID = scanner.nextLine();
-                relevantTreatments = FileHelper.getFileData(Treatment.class, FilePath.treatments).stream().filter(
-                        treatment -> treatment.getDoctorID().equals(doctorID)).toList();
-            }
-
-            case "4" -> {
-                System.out.println("Введите ФИО врача: ");
-                String doctorFullName = scanner.nextLine();
-                relevantTreatments = FileHelper.getFileData(Treatment.class, FilePath.treatments).stream().filter(
-                        treatment -> treatment.getDoctorFullName().contains(doctorFullName)).toList();
-            }
-
-            case "5" -> {
-                System.out.println("Введите ID амбулаторной карты пациента: ");
-                String cardFileID = scanner.nextLine();
-                relevantTreatments = FileHelper.getFileData(Treatment.class, FilePath.treatments).stream().filter(
-                        treatment -> treatment.getCardFileID().equals(cardFileID)).toList();
-            }
-
-            case "6" -> {
-                System.out.println("Введите ФИО пациента: ");
-                String patientFullName = scanner.nextLine();
-                relevantTreatments = FileHelper.getFileData(Treatment.class, FilePath.treatments).stream().filter(
-                        treatment -> treatment.getPatientFullName().contains(patientFullName)).toList();
-            }
-        }
-
-        if (relevantTreatments != null && !relevantTreatments.isEmpty()) {
-            PrettyTable prettyTable = new PrettyTable();
-            prettyTable.addHeader("Treatment ID", "Date", "Doctor ID", "Doctor full name", "Card file ID", "Patient full name");
-            relevantTreatments.forEach(treatment -> prettyTable.addRow(treatment.toShortArray()));
-
-            System.out.println(prettyTable + "\nДля вывода полной информации о назначенном лечении, введите его ID: ");
-            String treatmentID = scanner.nextLine();
-
-            for (Treatment treatment : relevantTreatments) {
-                if (treatment.getTreatmentID().equals(treatmentID)) {
-                    isFound = true;
-                    ConsolePrinter.printTreatment(treatment);
-                }
-            }
-        }
-
-        super.checkConditions(isFound, incorrectInput);
-        super.backToMenu();
-    }
-
-    // Метод №14
-    private void findRecipe() {
-        boolean isFound = false;
-        boolean incorrectInput = false;
-
-        System.out.println("""
-                Выберите по какому критерию искать назначенное лечение:
-                1) ID рецепта
-                2) ID амбулаторной карты
-                3) ФИО пациента
-                4) ID врача
-                5) ФИО врача""");
-
-        List<Recipe> relevantRecipes = null;
-        switch (scanner.nextLine()) {
-            case "1" -> {
-                System.out.println("Введите ID рецепта: ");
-                String recipeID = scanner.nextLine();
-                relevantRecipes = FileHelper.getFileData(Recipe.class, FilePath.recipes).stream().filter(
-                        recipe -> recipe.getRecipeID().equals(recipeID)).toList();
-            }
-
-            case "2" -> {
-                System.out.println("Введите ID амбулаторной карты: ");
-                String cardFileID = scanner.nextLine();
-                relevantRecipes = FileHelper.getFileData(Recipe.class, FilePath.recipes).stream().filter(
-                        recipe -> recipe.getCardFileID().equals(cardFileID)).toList();
-            }
-
-            case "3" -> {
-                System.out.println("Введите ФИО пациента: ");
-                String patientFullName = scanner.nextLine();
-                relevantRecipes = FileHelper.getFileData(Recipe.class, FilePath.recipes).stream().filter(
-                        recipe -> recipe.getPatientFullName().contains(patientFullName)).toList();
-            }
-
-            case "4" -> {
-                System.out.println("Введите ID врача: ");
-                String doctorID = scanner.nextLine();
-                relevantRecipes = FileHelper.getFileData(Recipe.class, FilePath.recipes).stream().filter(
-                        recipe -> recipe.getDoctorID().contains(doctorID)).toList();
-            }
-
-            case "5" -> {
-                System.out.println("Введите ФИО врача: ");
-                String doctorFullName = scanner.nextLine();
-                relevantRecipes = FileHelper.getFileData(Recipe.class, FilePath.recipes).stream().filter(
-                        recipe -> recipe.getDoctorFullName().contains(doctorFullName)).toList();
-            }
-        }
-
-        if (relevantRecipes != null && !relevantRecipes.isEmpty()) {
-            PrettyTable prettyTable = new PrettyTable();
-            prettyTable.addHeader("Recipe ID", "Date", "Card file ID", "Patient full name", "Doctor ID", "Doctor full name");
-            relevantRecipes.forEach(recipe -> prettyTable.addRow(recipe.toShortArray()));
-
-            System.out.println(prettyTable + "\nДля вывода полной информации о назначенном лечении, введите его ID: ");
-            String recipeID = scanner.nextLine();
-
-            for (Recipe recipe : relevantRecipes) {
-                if (recipe.getRecipeID().equals(recipeID)) {
-                    isFound = true;
-                    ConsolePrinter.printRecipe(recipe);
-                }
-            }
-        }
-
-        super.checkConditions(isFound, incorrectInput);
-        backToMenu();
     }
 }

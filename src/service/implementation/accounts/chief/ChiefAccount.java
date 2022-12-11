@@ -4,13 +4,13 @@ import models.implementation.doctors.Doctor;
 import models.implementation.employees.Employee;
 import models.interfaces.Convertible;
 import service.implementation.accounts.Account;
-import service.interfaces.Displayable;
+import service.interfaces.Printable;
 import service.interfaces.Searchable;
 import utils.*;
 
 import java.util.*;
 
-public class ChiefAccount extends Account implements Displayable, Searchable {
+public class ChiefAccount extends Account implements Printable, Searchable {
     @Override
     public void showMenu() {
         System.out.println("""

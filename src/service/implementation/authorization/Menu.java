@@ -2,6 +2,7 @@ package service.implementation.authorization;
 
 import service.implementation.accounts.cashier.CashierAccount;
 import service.implementation.accounts.chief.ChiefAccount;
+import service.implementation.accounts.doctor.DoctorAccount;
 import service.implementation.accounts.registrar.RegistrarAccount;
 import utils.DataHelper;
 
@@ -41,9 +42,9 @@ public class Menu {
                 }
 
                 case "Doctor" -> {
-//                    DoctorAccount account = new DoctorAccount(checked[1]);
-//                    account.setScanner(new Scanner(System.in));
-//                    account.showMenu();
+                    DoctorAccount account = new DoctorAccount(checked[1]);
+                    account.setScanner(new Scanner(System.in));
+                    account.showMenu();
                     scanner.close();
                     break loop;
                 }
