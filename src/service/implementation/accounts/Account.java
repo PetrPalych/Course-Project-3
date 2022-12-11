@@ -15,6 +15,11 @@ public abstract class Account {
     // У каждого аккаунта свой собственный сканер.
     protected Scanner scanner;
 
+    // Возвращает сканер
+    public Scanner getScanner() {
+        return scanner;
+    }
+
     // Метод для установки сканера.
     public void setScanner(Scanner scanner) {
         this.scanner = scanner;
@@ -24,7 +29,7 @@ public abstract class Account {
     public abstract void showMenu() throws Exception;
 
     // Метод для проверки булевых значений после выполнения метода.
-    protected void checkConditions(boolean isFound, boolean incorrectInput) {
+    public void checkConditions(boolean isFound, boolean incorrectInput) {
         if (!isFound) {
             System.out.println("Не было найдено ничего, соответствующего Вашему запросу!");
         }
@@ -35,7 +40,7 @@ public abstract class Account {
     }
 
     // Метод для возвращения в главное меню (одинаково для всех аккаунтов).
-    protected void backToMenu() {
+    public void backToMenu() {
         while (true) {
             System.out.println("Чтобы вернуться в меню, нажмите Enter");
             if (scanner.nextLine().equals("")) {
@@ -53,7 +58,7 @@ public abstract class Account {
     }
 
     // Метод для создания готовой заполненной таблицы.
-    protected PrettyTable makeTableOf(List<? extends Convertible> list, FilePath filePath) {
+    public PrettyTable makeTableOf(List<? extends Convertible> list, FilePath filePath) {
         PrettyTable prettyTable = FileHelper.makeTable(filePath);
 
         // Заполнение
@@ -68,7 +73,7 @@ public abstract class Account {
      String data - строка, которая содержится в поле.
      String methodName - метод, с помощью которого можно получить искомую строку из поля.
     */
-    protected List<Convertible> findInList(List<?> list, String data, String methodName) {
+    public List<Convertible> findInList(List<?> list, String data, String methodName) {
         List<Convertible> relevantObjects = new ArrayList<>();
 
         if (!list.isEmpty()) {

@@ -1,6 +1,7 @@
 package service.implementation.authorization;
 
 import service.implementation.accounts.chief.ChiefAccount;
+import service.implementation.accounts.registrar.RegistrarAccount;
 import utils.DataHelper;
 
 import java.util.Scanner;
@@ -23,9 +24,9 @@ public class Menu {
             String[] checked = DataHelper.checkSignInData(username, password);
             switch (checked[0]) {
                 case "Registrar" -> {
-//                    RegistrarAccount account = new RegistrarAccount();
-//                    account.setScanner(new Scanner(System.in));
-//                    account.showMenu();
+                    RegistrarAccount account = new RegistrarAccount();
+                    account.setScanner(new Scanner(System.in));
+                    account.showMenu();
                     scanner.close();
                     break loop;
                 }

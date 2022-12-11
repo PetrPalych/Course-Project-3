@@ -4,11 +4,13 @@ import models.implementation.doctors.Doctor;
 import models.implementation.employees.Employee;
 import models.interfaces.Convertible;
 import service.implementation.accounts.Account;
+import service.interfaces.Displayable;
+import service.interfaces.Searchable;
 import utils.*;
 
 import java.util.*;
 
-public class ChiefAccount extends Account {
+public class ChiefAccount extends Account implements Displayable, Searchable {
     @Override
     public void showMenu() {
         System.out.println("""
@@ -35,8 +37,8 @@ public class ChiefAccount extends Account {
             case "4" -> addAccount();
             case "5" -> deleteAccount();
 
-            case "6" -> showListOfDoctors();
-            case "7" -> findDoctor();
+            case "6" -> showListOfDoctors(this);
+            case "7" -> findDoctor(this);
             case "8" -> changeDoctorsData();
             case "9" -> addDoctor();
             case "10" -> deleteDoctor();
@@ -318,95 +320,6 @@ public class ChiefAccount extends Account {
 
 
 
-    // Метод №6 #Вывод
-    private void showListOfDoctors() {
-        System.out.println(super.makeTableOf(FileHelper.getFileData(Doctor.class, FilePath.doctors), FilePath.doctors));
-        backToMenu();
-    }
-
-    // Метод №7 #Поиск
-    private void findDoctor() {
-        boolean isFound = false;
-        boolean incorrectInput = false;
-
-        System.out.println("""
-                Выберите по какому критерию искать врача:
-                1) ID
-                2) ФИО
-                3) Специализация
-                4) Рабочие дни""");
-
-        List<? extends Convertible> relevantDoctors = null;
-        switch (scanner.nextLine()) {
-            case "1" -> {
-                System.out.println("Введите ID врача: ");
-                String id = scanner.nextLine();
-                relevantDoctors = super.findInList(
-                        FileHelper.getFileData(Doctor.class, FilePath.doctors), id, "getId");
-            }
-
-            case "2" -> {
-                System.out.println("Введите ФИО врача: ");
-                String fullName = scanner.nextLine();
-                relevantDoctors = FileHelper.getFileData(Doctor.class, FilePath.doctors).stream().filter(
-                        doctor -> doctor.getFullName().contains(fullName)).toList();
-            }
-
-            case "3" -> {
-                System.out.println("Введите специализацию врача: ");
-                String specialization = scanner.nextLine();
-                relevantDoctors = super.findInList(
-                        FileHelper.getFileData(Doctor.class, FilePath.doctors), specialization, "getSpecialization");
-            }
-
-            case "4" -> {
-                System.out.println("""
-                        Выберите рабочие дни (через пробел):
-                        1) Понедельник
-                        2) Вторник
-                        3) Среда
-                        4) Четверг
-                        5) Пятница
-                        6) Суббота
-                        7) Воскресенье""");
-
-                // Для удаления повторяющихся элементов
-                HashSet<String> choiceSet = new HashSet<>(List.of(scanner.nextLine().split(" ")));
-
-                ArrayList<String> days = new ArrayList<>();
-                for (String s : choiceSet) {
-                    switch (s) {
-                        case "1" -> days.add("Mo");
-                        case "2" -> days.add("Tu");
-                        case "3" -> days.add("We");
-                        case "4" -> days.add("Th");
-                        case "5" -> days.add("Fr");
-                        case "6" -> days.add("Sa");
-                        case "7" -> days.add("Su");
-                    }
-                }
-
-                relevantDoctors = FileHelper.getFileData(Doctor.class, FilePath.doctors).stream().filter(
-                        doctor -> {
-                            for (String day : days) {
-                                if (doctor.getWorkingDays().contains(day)) {
-                                    return true;
-                                }
-                            }
-                            return false;
-                        }).toList();
-            }
-        }
-
-        if (relevantDoctors != null && !relevantDoctors.isEmpty()) {
-            isFound = true;
-            System.out.println(super.makeTableOf(relevantDoctors, FilePath.doctors));
-        }
-
-        super.checkConditions(isFound, incorrectInput);
-        backToMenu();
-    }
-
     // Метод №8 #Изменение
     private void changeDoctorsData() {
         boolean isFound = false;
@@ -421,6 +334,7 @@ public class ChiefAccount extends Account {
         for (Doctor doctor : doctors) {
             if (doctor.getDoctorID().equals(id)) {
                 isFound = true;
+                ConsolePrinter.printDoctor(doctor);
 
                 System.out.println("""
                         Какое поле Вы хотите изменить?

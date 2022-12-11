@@ -3,6 +3,7 @@ package utils;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import models.implementation.employees.Employee;
+import models.implementation.patients.Patient;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -93,5 +94,35 @@ public class DataHelper {
 
         Collections.sort(idList);
         return idList.get(idList.size() - 1) + 1;
+    }
+
+
+
+    // Проверяет дату (dd.MM.yyyy) на корректность
+    public static boolean dateIsValid(String date) {
+        return date.matches("^[0-3][0-9].[0-3][0-9].(?:[0-9][0-9])?[0-9][0-9]$");
+    }
+
+    // Форматирует строку в дату (dd.MM.yyyy)
+    public static String formatDate(String date) {
+        return "%02d.%02d.%d".formatted(
+                Integer.parseInt(date.trim().split("\\.")[0]), // День
+                Integer.parseInt(date.trim().split("\\.")[1]), // Месяц
+                Integer.parseInt(date.trim().split("\\.")[2])); // Год
+    }
+
+
+
+    // Проверяет телефонный номер (+x xxx xxx xxx) на корректность
+    public static boolean phoneNumberIsValid(String phoneNumber) {
+        return phoneNumber.matches("^(\\+(\\d{1,10})|(\\d{1,10})) ?\\d{3} ?\\d{3} ?\\d{3}$");
+    }
+
+
+
+    // Проверяет уникальность переданного персонального номера в файле с пациентами
+    public static boolean personalNumberIsUnique(String personalNumber) {
+        return !FileHelper.getFileData(Patient.class, FilePath.patients).stream().map(
+                patient -> patient.getPersonalNumber().equals(personalNumber)).toList().contains(true);
     }
 }
