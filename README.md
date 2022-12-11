@@ -7,7 +7,7 @@ processing data about patients, doctors, diagnoses and prescriptions.
 
 ## Authors
 
-- [@petrPalych](https://github.com/petrPalych)
+- [@PetrPalych](https://github.com/PetrPalych)
 - [@X](https://github.com/OneLoveFaith)
 
 
