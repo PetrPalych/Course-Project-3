@@ -1,5 +1,6 @@
 package service.implementation.authorization;
 
+import service.implementation.accounts.cashier.CashierAccount;
 import service.implementation.accounts.chief.ChiefAccount;
 import service.implementation.accounts.registrar.RegistrarAccount;
 import utils.DataHelper;
@@ -32,9 +33,9 @@ public class Menu {
                 }
 
                 case "Cashier" -> {
-//                    CashierAccount account = new CashierAccount();
-//                    account.setScanner(new Scanner(System.in));
-//                    account.showMenu();
+                    CashierAccount account = new CashierAccount();
+                    account.setScanner(new Scanner(System.in));
+                    account.showMenu();
                     scanner.close();
                     break loop;
                 }
