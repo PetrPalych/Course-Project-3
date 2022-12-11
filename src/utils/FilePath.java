@@ -1,7 +1,8 @@
 package utils;
 
 public enum FilePath {
-    authorization("src/models/implementation/employees/data.csv");
+    authorization("src/models/implementation/employees/data.csv"),
+    doctors("src/models/implementation/doctors/data.csv");
 
 
 

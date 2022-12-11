@@ -1,5 +1,6 @@
 package service.implementation.authorization;
 
+import service.implementation.accounts.chief.ChiefAccount;
 import utils.DataHelper;
 
 import java.util.Scanner;
@@ -46,9 +47,9 @@ public class Menu {
                 }
 
                 case "Chief doctor" -> {
-//                    ChiefAccount account = new ChiefAccount();
-//                    account.setScanner(new Scanner(System.in));
-//                    account.showMenu();
+                    ChiefAccount account = new ChiefAccount();
+                    account.setScanner(new Scanner(System.in));
+                    account.showMenu();
                     scanner.close();
                     break loop;
                 }
