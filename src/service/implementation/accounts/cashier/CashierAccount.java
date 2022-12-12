@@ -63,7 +63,7 @@ public class CashierAccount extends Account {
         String id = scanner.nextLine();
 
         for (Appointment appointment : appointments) {
-            if (appointment.getContractID().equals(id) && !appointment.getStatus().equals("Paid")) {
+            if (appointment.getAppointmentID().equals(id) && !appointment.getStatus().equals("Paid")) {
                 isFound = true;
                 ConsolePrinter.printAppointment(appointment);
 
@@ -72,7 +72,7 @@ public class CashierAccount extends Account {
                     isChanged = true;
                     appointment.setStatus("Paid");
 
-                    csvData[0] = appointment.getContractID();
+                    csvData[0] = appointment.getAppointmentID();
                     csvData[1] = appointment.getCardFileID();
                     csvData[2] = appointment.getPatientFullName();
                     csvData[3] = appointment.getServiceCost();

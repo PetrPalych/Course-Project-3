@@ -34,7 +34,7 @@ public interface Searchable {
                 System.out.println("Введите ID врача: ");
                 String id = account.getScanner().nextLine();
                 relevantDoctors = account.findInList(
-                        FileHelper.getFileData(Doctor.class, FilePath.doctors), id, "getId");
+                        FileHelper.getFileData(Doctor.class, FilePath.doctors), id, "getDoctorID");
             }
 
             case "2" -> {
@@ -158,7 +158,7 @@ public interface Searchable {
                 relevantContracts = account.findInList(
                         FileHelper.getFileData(Appointment.class, FilePath.appointments),
                         contractId,
-                        "getContractId");
+                        "getAppointmentID");
             }
 
             case "2" -> {

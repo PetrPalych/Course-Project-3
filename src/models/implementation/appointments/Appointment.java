@@ -4,8 +4,8 @@ import com.opencsv.bean.CsvBindByName;
 import models.interfaces.Convertible;
 
 public class Appointment implements Convertible {
-    @CsvBindByName(column = "Contract ID")
-    private String contractID;
+    @CsvBindByName(column = "Appointment ID")
+    private String appointmentID;
 
     @CsvBindByName(column = "Doctor ID")
     private String doctorID;
@@ -34,8 +34,8 @@ public class Appointment implements Convertible {
     @CsvBindByName(column = "Status")
     private String status;
 
-    public String getContractID() {
-        return contractID;
+    public String getAppointmentID() {
+        return appointmentID;
     }
 
     public String getDoctorID() {
@@ -108,6 +108,6 @@ public class Appointment implements Convertible {
 
     @Override
     public String[] toArray() {
-        return new String[] {contractID, doctorID, doctorFullName, cabinetNumber, receptionTime, receptionDate, cardFileID, patientFullName, serviceCost, status};
+        return new String[] {appointmentID, doctorID, doctorFullName, cabinetNumber, receptionTime, receptionDate, cardFileID, patientFullName, serviceCost, status};
     }
 }

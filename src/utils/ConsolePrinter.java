@@ -63,7 +63,7 @@ public class ConsolePrinter {
                 Service cost: %s
                 Status: %s%n
                 """,
-                contract.getContractID(), contract.getDoctorID(), contract.getDoctorFullName(), contract.getCabinetNumber(), contract.getReceptionTime(), contract.getReceptionDate(), contract.getCardFileID(), contract.getPatientFullName(), contract.getServiceCost(), contract.getStatus());
+                contract.getAppointmentID(), contract.getDoctorID(), contract.getDoctorFullName(), contract.getCabinetNumber(), contract.getReceptionTime(), contract.getReceptionDate(), contract.getCardFileID(), contract.getPatientFullName(), contract.getServiceCost(), contract.getStatus());
     }
 
     // Выводит информацию о назначенном лечении

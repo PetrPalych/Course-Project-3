@@ -1,3 +1,3 @@
 Recipe ID,Date,Card file ID,Patient full name,Age,Doctor ID,Doctor full name,Type of recipe,Drug name
-1,03.12.2022,5,Andreeva Amelia Grigoryevna,22.11.1988,5,Richards Phil,Adult,"Lorem ipsum%n."
-2,08.12.2022,7,Kharitonov Maxim Georgievich,06.04.1958,7,Kupitman Ivan Natanovich,Adult,"Lorem ipsum%n."
+1,03.12.2022,5,Andreeva Amelia Grigoryevna,22.11.1988,5,Richards Phil,Adult,"Lorem ipsum.%n"
+2,08.12.2022,7,Kharitonov Maxim Georgievich,06.04.1958,7,Kupitman Ivan Natanovich,Adult,"Lorem ipsum.%n"

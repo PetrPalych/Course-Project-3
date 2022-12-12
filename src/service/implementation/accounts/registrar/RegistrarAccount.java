@@ -297,7 +297,7 @@ public class RegistrarAccount extends Account implements Printable, Searchable {
         String contractId = scanner.nextLine();
 
         for (Appointment contract : contracts) {
-            if (contract.getContractID().equals(contractId)) {
+            if (contract.getAppointmentID().equals(contractId)) {
                 isFound = true;
                 ConsolePrinter.printAppointment(contract);
 
@@ -479,7 +479,7 @@ public class RegistrarAccount extends Account implements Printable, Searchable {
             case "1" -> {
                 System.out.println("Введите ID приема: ");
                 String contractId = scanner.nextLine();
-                isFound = contracts.removeIf(contract -> contract.getContractID().equals(contractId));
+                isFound = contracts.removeIf(contract -> contract.getAppointmentID().equals(contractId));
             }
 
             case "2" -> {
@@ -489,7 +489,7 @@ public class RegistrarAccount extends Account implements Printable, Searchable {
 
                 HashSet<String> idForDeleting = new HashSet<>(List.of(scanner.nextLine().split(" ")));
                 for (String id : idForDeleting) {
-                    isFound = contracts.removeIf(contract -> contract.getContractID().equals(id));
+                    isFound = contracts.removeIf(contract -> contract.getAppointmentID().equals(id));
                 }
             }
         }

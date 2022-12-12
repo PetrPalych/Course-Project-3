@@ -11,6 +11,8 @@ public interface Printable {
     default void showListOfDoctors(Account account) {
         System.out.println(account.makeTableOf(
                 FileHelper.getFileData(Doctor.class, FilePath.doctors), FilePath.doctors));
+
+        account.backToMenu();
     }
 
     default void showCardFile(Account account) {
