@@ -126,7 +126,7 @@ public class CashierAccount extends Account {
                 System.out.println("Введите ID платежа: ");
                 String id = scanner.nextLine();
                 relevantPayments = super.findInList(
-                        FileHelper.getFileData(Payment.class, FilePath.payments), id, "getId");
+                        FileHelper.getFileData(Payment.class, FilePath.payments), id, "getPaymentID");
             }
 
             case "2" -> {

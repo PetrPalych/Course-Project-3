@@ -1,6 +1,6 @@
 "Appointment ID","Doctor ID","Doctor full name","Cabinet number","Reception time","Reception date","Patient card file ID","Patient full name","Service cost","Status"
 "1","1","Lobanov Semyon","101","09:30","12.12.2022","1","Yasmina Pavlovna","1000","Paid"
-"2","2","Romanenko Gleb","101","08:00","09.12.2022","1","Yasmina Pavlovna","1000","Not Paid"
+"2","2","Romanenko Gleb","101","08:00","09.12.2022","1","Yasmina Pavlovna","1000","Paid"
 "3","3","Chernous Varvara","101","16:30","01.12.2022","3","Blinov Ivan Danielovich","700","Paid"
 "4","4","Levin Boris","101","08:00","05.12.2022","4","Golovina Elizaveta Dmitrievna","750","Not Paid"
 "5","5","Richards Phil","101","14:00","03.12.2022","5","Andreeva Amelia Grigoryevna","250","Paid"
