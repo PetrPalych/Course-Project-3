@@ -457,6 +457,7 @@ public class RegistrarAccount extends Account implements Printable, Searchable {
 
         if (!incorrectInput) {
             FileWriter.appendToFile(csvData, FilePath.appointments);
+            System.out.println("Прием успешно назначен!");
         }
 
         super.checkConditions(true, incorrectInput);
