@@ -80,10 +80,10 @@ public class ChiefAccount extends Account implements Printable, Searchable {
             }
 
             case "2" -> {
-                System.out.println("Введите ФИО сотрудника: ");
-                String fullName = scanner.nextLine();
+                System.out.println("Введите ID доктора: ");
+                String doctorID = scanner.nextLine();
                 relevantEmployees = FileHelper.getFileData(Employee.class, FilePath.authorization).stream().filter(
-                        employee -> employee.getDoctorID().contains(fullName)).toList();
+                        employee -> employee.getDoctorID().contains(doctorID)).toList();
             }
         }
 
@@ -283,31 +283,10 @@ public class ChiefAccount extends Account implements Printable, Searchable {
 
         List<Employee> employees = FileHelper.getFileData(Employee.class, FilePath.authorization);
 
-        System.out.println("""
-                Выберите способ удаления:
-                1) Удаление по логину
-                2) Множественное удаление""");
+        System.out.println("Введите логин сотрудника: ");
+        String username = scanner.nextLine();
 
-        switch (scanner.nextLine()) {
-            case "1" -> {
-                System.out.println("Введите логин сотрудника: ");
-                String username = scanner.nextLine();
-
-                isFound = employees.removeIf(employee -> employee.getUsername().equals(username));
-            }
-
-            case "2" -> {
-                System.out.println(super.makeTableOf(employees, FilePath.authorization) +
-                        "\nВведите ID аккаунта(-ов), который(-ые) хотите удалить: ");
-
-                HashSet<String> idForDeleting = new HashSet<>(List.of(scanner.nextLine().split(" ")));
-                for (String id : idForDeleting) {
-                    isFound = employees.removeIf(
-                            employee -> employee.getDoctorID().equals(id) &&
-                                    !employee.getAccountType().equals("Chief doctor"));
-                }
-            }
-        }
+        isFound = employees.removeIf(employee -> employee.getUsername().equals(username));
 
         if (isFound && !incorrectInput){
             FileWriter.rewriteFile(employees, FilePath.authorization);

@@ -1,8 +1,6 @@
-Doctor ID,Full name,Specialization,Cabinet number,Working regime,Working days
-1,Lobanov Semyon,Intern,101,08:00-17:00,Mo Tu We Th Fr Sa
-2,Romanenko Gleb,Intern,101,08:00-17:00,Mo We Fr
-3,Chernous Varvara,Intern,101,08:00-17:00,Mo Tu We Th Fr Sa
-4,Levin Boris,Intern,101,08:00-17:00,Mo Tu We Th Fr Sa
-5,Richards Phil,Intern,101,08:00-17:00,Mo Tu We Th Fr Sa
-6,Bykov Andrey Evgenievich,Head of the Therapeutic Department,105,09:30-18:00,Mo Tu We Th Fr Sa
-7,Kupitman Ivan Natanovich,Dermatovenerologist,106,10:00-17:00,Mo Tu We Th Fr
+"Doctor ID","Full name","Specialization","Cabinet number","Working regime","Working days"
+"2","Romanenko Gleb","Intern","101","08:00-17:00","Mo We Fr"
+"3","Chernous Varvara","Intern","101","08:00-17:00","Mo Tu We Th Fr Sa"
+"4","Levin Boris","Intern","101","08:00-17:00","Mo Tu We Th Fr Sa"
+"5","Richards Phil","Intern","101","08:00-17:00","Mo Tu We Th Fr Sa"
+"6","Bykov Andrey Evgenievich","Head of the Therapeutic Department","105","09:30-18:00","Mo Tu We Th Fr Sa"
