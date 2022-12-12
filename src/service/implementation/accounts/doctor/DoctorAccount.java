@@ -21,7 +21,7 @@ public class DoctorAccount extends Account implements Printable, Searchable {
 
     public DoctorAccount(String doctorID) {
         Optional<Doctor> relevantDoctor = FileHelper.getFileData(Doctor.class, FilePath.doctors).stream().filter(
-                doctor -> doctor.getFullName().equals(doctorID)).findFirst();
+                doctor -> doctor.getDoctorID().equals(doctorID)).findFirst();
 
         relevantDoctor.ifPresent(doctor -> this.currentDoctor = doctor);
     }

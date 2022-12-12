@@ -1,11 +1,11 @@
-"Patient ID","Full name","Sex","Date of birth","Region","City","Address","Phone number","Personal number"
-"1","Yasmina Pavlovna","F","21.01.1998","Moscow","Lukhovitsy","Chekhov Boulevard 23","+7 028 311 608","342995102"
-"2","Alexandrova Aisha Maksimovna","F","25.05.1997","Kurgan","Krasnogorsk","Gogol highway 01","+7 643 931 111","771053059"
-"3","Blinov Ivan Danielovich","M","14.04.1985","Arkhangelsk","Moscow","Balkanskaya street 93","+7 804 021 001","361765364"
-"4","Golovina Elizaveta Dmitrievna","F","19.06.1997","Sverdlovsk","Dmitrov","Chekhov passage 93","+7 710 832 099","134606041"
-"5","Andreeva Amelia Grigoryevna","F","22.11.1988","Kostroma","Vidnoye","Lomonosov passage 41","+7 845 955 011","976610401"
-"6","Kuznetsov Ruslan Andreevich","M","26.11.1988","Kirov","Solnechnogorsk","Gogol Boulevard 54","+7 446 445 451","420496307"
-"7","Kharitonov Maxim Georgievich","M","06.04.1958","Chelyabinsk","Yegoryevsk","Budapest Square 19","+869 781 156 948","581174835"
-"8","Belova Alina Sergeyevna","F","20.01.2000","Murmansk","Domodedovo","Ladygin descent 85","+7 805 592 563","787687569"
-"9","Kuznetsova Anna Vsevolodovna","F","03.03.1970","Tyumen","Volokolamsk","Highway Kosiora 75","+7 204 909 854","553116365"
-"10","Dorofeev Yaroslav Georgievich","M","03.05.1991","Pskov","Sergiev Posad","Budapest str.61","+7 798 290 854","792128539"
+Patient ID,Full name,Sex,Date of birth,Region,City,Address,Phone number,Personal number
+1,Yasmina Pavlovna,F,21.01.1998,Moscow,Lukhovitsy,Chekhov Boulevard 23,+7 028 311 608,342995102
+2,Alexandrova Aisha Maksimovna,F,25.05.1997,Kurgan,Krasnogorsk,Gogol highway 01,+7 643 931 111,771053059
+3,Blinov Ivan Danielovich,M,14.04.1985,Arkhangelsk,Moscow,Balkanskaya street 93,+7 804 021 001,361765364
+4,Golovina Elizaveta Dmitrievna,F,19.06.1997,Sverdlovsk,Dmitrov,Chekhov passage 93,+7 710 832 099,134606041
+5,Andreeva Amelia Grigoryevna,F,22.11.1988,Kostroma,Vidnoye,Lomonosov passage 41,+7 845 955 011,976610401
+6,Kuznetsov Ruslan Andreevich,M,26.11.1988,Kirov,Solnechnogorsk,Gogol Boulevard 54,+7 446 445 451,420496307
+7,Kharitonov Maxim Georgievich,M,06.04.1958,Chelyabinsk,Yegoryevsk,Budapest Square 19,+869 781 156 948,581174835
+8,Belova Alina Sergeyevna,F,20.01.2000,Murmansk,Domodedovo,Ladygin descent 85,+7 805 592 563,787687569
+9,Kuznetsova Anna Vsevolodovna,F,03.03.1970,Tyumen,Volokolamsk,Highway Kosiora 75,+7 204 909 854,553116365
+10,Dorofeev Yaroslav Georgievich,M,03.05.1991,Pskov,Sergiev Posad,Budapest str.61,+7 798 290 854,792128539
