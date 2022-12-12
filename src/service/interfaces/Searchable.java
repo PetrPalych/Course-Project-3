@@ -167,7 +167,7 @@ public interface Searchable {
                 relevantContracts = account.findInList(
                         FileHelper.getFileData(Appointment.class, FilePath.appointments),
                         doctorId,
-                        "getDoctorId");
+                        "getDoctorID");
             }
 
             case "3" -> {
