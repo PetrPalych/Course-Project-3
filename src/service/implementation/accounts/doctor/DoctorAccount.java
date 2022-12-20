@@ -38,7 +38,7 @@ public class DoctorAccount extends Account implements Printable, Searchable {
                 3)  Список врачей
                 4)  Поиск врача
                 
-                5)  Список записей на приём
+                5)  Список записей на прием
                 6)  Поиск записи на прием
                 
                 7)  Поиск назначенного лечения
